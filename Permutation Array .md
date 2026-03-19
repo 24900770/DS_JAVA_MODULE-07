@@ -22,53 +22,44 @@ program that removes all nodes from a linked list whose value matches a given in
 Developed by:HARIHARAN M
 RegisterNumber:  212224100019
 */
-import java.util.Scanner;
-
-class LongestSet {
-
-    public static int longestSetLength(int[] nums) {
-        boolean[] visited = new boolean[nums.length];
-        int maxLength = 0;
-
-        for (int i = 0; i < nums.length; i++) {
-            if (!visited[i]) {
-                int count = 0;
-                int current = i;
-
-                while (!visited[current]) {
-                    visited[current] = true;
-                    current = nums[current];
-                    count++;
-                }
-
-                maxLength = Math.max(maxLength, count);
-            }
-        }
-
-        return maxLength;
-    }
-
+import java.util.*;
+public class ArrayNestingMain {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine().trim();
+        input = input.replace("nums =", "").replace("[", "").replace("]", "").trim();
+        String[] parts = input.split(",");
+        int[] nums = new int[parts.length];
 
-        System.out.print("Enter the array size: ");
-        int n = sc.nextInt();
-
-        int[] nums = new int[n];
-
-      
-        System.out.println("Enter " + n + " elements:");
-        for (int i = 0; i < n; i++) {
-            nums[i] = sc.nextInt();
+        for (int i = 0; i < parts.length; i++) {
+            nums[i] = Integer.parseInt(parts[i].trim());
         }
-
-        int result = longestSetLength(nums);
-        System.out.println("Maximum size of S[k] = " + result);
-
+        Solution sol = new Solution();
+        int result = sol.arrayNesting(nums);
+        System.out.println(result);
         sc.close();
     }
 }
+class Solution {
+    public int arrayNesting(int[] nums) {
+        int maxlen = 0;
+        boolean[] visited = new boolean[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            if (!visited[i]) {
+                int count = 0;
+                int curr = i;
+                while (!visited[curr]) {
+                    visited[curr] = true;
+                    curr = nums[curr];
+                    count++;
+                }
+                maxlen = Math.max(maxlen, count);
+            }
+        }
+        return maxlen;
 
+    }
+}
    
 */
 
@@ -76,7 +67,7 @@ class LongestSet {
 
 ## Output:
 
-<img width="648" height="331" alt="image" src="https://github.com/user-attachments/assets/ec3863b7-0889-4948-bf67-6b809f2f21c8" />
+<img width="483" height="90" alt="image" src="https://github.com/user-attachments/assets/542673ef-ce05-4ca5-bf07-bca1eb7733d0" />
 
 
 ## Result:
